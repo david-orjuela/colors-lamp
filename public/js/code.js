@@ -1,5 +1,5 @@
 const urlBase = 'http://davidorjuela.site/LAMPAPI';
-const extension = 'php';
+const extension = 'php'; //
 
 let userId = 0;
 let firstName = "";
