@@ -1,0 +1,79 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class IndexPage {
+  +loginName : string
+  +loginPassword : string
+}
+
+class ColorPage {
+  +searchText : string
+  +colorText : string
+  +colorList : string
+}
+
+class CodeJS {
+  -urlBase : string
+  -extension : string
+  -userId : int
+  -firstName : string
+  -lastName : string
+  +doLogin()
+  +saveCookie()
+  +readCookie()
+  +doLogout()
+  +addColor()
+  +searchColor()
+}
+
+class LoginAPI {
+  +getRequestInfo()
+  +returnWithInfo()
+  +returnWithError()
+}
+
+class AddColorAPI {
+  +getRequestInfo()
+  +returnWithError()
+}
+
+class SearchColorsAPI {
+  +getRequestInfo()
+  +returnWithInfo()
+  +returnWithError()
+}
+
+class User {
+  +ID : int
+  +firstName : string
+  +lastName : string
+  +Login : string
+  +Password : string
+}
+
+class Color {
+  +UserId : int
+  +Name : string
+}
+
+class Database {
+  +Users
+  +Colors
+}
+
+IndexPage --> CodeJS : uses
+ColorPage --> CodeJS : uses
+
+CodeJS --> LoginAPI : calls
+CodeJS --> AddColorAPI : calls
+CodeJS --> SearchColorsAPI : calls
+
+LoginAPI --> Database : queries
+AddColorAPI --> Database : inserts
+SearchColorsAPI --> Database : queries
+
+Database --> User : stores
+Database --> Color : stores
+
+User "1" --> "0..*" Color : owns
+@enduml
