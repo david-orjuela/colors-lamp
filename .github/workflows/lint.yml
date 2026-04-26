@@ -1,19 +1,19 @@
-name: Lint HTML, CSS, and JS
+name: Lint HTML, CSS, and JS and Test
 
 on:
   push:
   pull_request:
 
 jobs:
-  lint:
+  lint-and-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
 
@@ -22,3 +22,6 @@ jobs:
 
       - name: Run linters
         run: npm run lint
+
+      - name: Run tests
+        run: npm test
